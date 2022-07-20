@@ -40,7 +40,19 @@ GROUP BY mes, año;
 -- Desde recursos humanos nos piden seleccionar los nombres de las ciudades con 4 o más empleadas 
 -- de cara a estudiar la apertura de nuevas oficinas.
 
-SELECT city, count(employee_id)
-GROUP BY city 
-FROM employees 
-SELECT city, COUNT(employee_id) ;
+SELECT city, SUM(employee_id)
+FROM employees
+GROUP BY city
+HAVING SUM(employee_id) >= 4;
+
+-- 6.Cread una nueva columna basándonos en la cantidad monetaria:
+-- Necesitamos una consulta que clasifique los pedidos en dos categorías ("Alto" y "Bajo") en función de la cantidad monetaria total
+-- que han supuesto: por encima o por debajo de 2000 euros.
+
+SELECT order_id, 
+CASE 
+	WHEN (unit_price * quantity) < 2000 THEN 'Bajo'
+    ELSE 'Alto'
+    END AS Cantidad_Monetaria
+FROM order_details;
+
