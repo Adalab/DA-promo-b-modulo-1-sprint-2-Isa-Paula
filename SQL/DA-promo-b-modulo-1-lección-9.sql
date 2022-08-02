@@ -43,4 +43,23 @@ WHERE employees1.reports_to <> employees2.employee_id; # Aquellas empleadas que 
 		
 SELECT employees1.city, employees1.first_name AS NombreEmpleado, employees1.last_name AS ApellidoEmpleado, employees2.city, employees2.first_name AS NombreJefe, employees2.last_name AS ApellidoJefe
 FROM employees AS employees1, employees AS employees2
-WHERE employees1.reports_to = employees2.employee_id;
+WHERE employees1.reports_to = employees2.employee_id; # resultado empleadas y supervisoras
+
+SELECT employees1.city, employees1.first_name AS NombreEmpleado, employees1.last_name AS ApellidoEmpleado, employees2.city, employees2.first_name AS NombreJefe, employees2.last_name AS ApellidoJefe
+FROM employees AS employees1, employees AS employees2
+WHERE employees1.employee_id = employees2.employee_id 
+AND employees2.title = 'Vice President, Sales';	# resultado vice president sales
+
+-- BONUS: FULL OUTER JOIN Pedidos y empresas con pedidos asociados o no:
+-- Selecciona todos los pedidos, tengan empresa asociada o no, y todas las empresas tengan pedidos asociados o no. 
+-- Muestra el ID del pedido, el nombre de la empresa y la fecha del pedido (si existe).
+
+SELECT orders.order_id, customers.company_name, orders.order_date
+FROM orders
+LEFT JOIN customers
+ON orders.customer_id = customers.customer_id
+UNION
+SELECT orders.order_id, customers.company_name, orders.order_date
+FROM orders
+RIGHT JOIN customers
+ON customers.customer_id = orders.customer_id;
