@@ -37,12 +37,17 @@ WHERE year(order_date)= 1997);
 -- 4. Extraed toda la información de los pedidos donde tengamos "Konbu"
 -- Estamos muy interesados en saber como ha sido la evolución de la venta de Konbu 
 -- a lo largo del tiempo. Nuestro jefe nos pide que nos muestre todos los pedidos que contengan "Konbu".
-💡-- Pista 💡 En esta query tendremos que combinar conocimientos adquiridos en las lecciones anteriores 
+-- 💡-- Pista 💡 En esta query tendremos que combinar conocimientos adquiridos en las lecciones anteriores 
 -- como por ejemplo el INNER JOIN.
 
 SELECT*
-FROM orders
-INNER JOIN products
-ON products.product_id;  -- pendienete de terminar la consulta
+FROM orders 
+WHERE orders.order_id IN (
+							SELECT order_details.order_id
+							FROM order_details
+								INNER JOIN products
+								ON products.product_id = order_details.product_id
+								WHERE products.product_name = 'Konbu');  -- pendienete de terminar la consulta
+
 
 
