@@ -40,10 +40,10 @@ GROUP BY mes, año;
 -- Desde recursos humanos nos piden seleccionar los nombres de las ciudades con 4 o más empleadas 
 -- de cara a estudiar la apertura de nuevas oficinas.
 
-SELECT city, SUM(employee_id)
+SELECT city, COUNT(employee_id)
 FROM employees
 GROUP BY city
-HAVING SUM(employee_id) >= 4;
+HAVING COUNT(employee_id) >= 4;
 
 -- 6.Cread una nueva columna basándonos en la cantidad monetaria:
 -- Necesitamos una consulta que clasifique los pedidos en dos categorías ("Alto" y "Bajo") en función de la cantidad monetaria total
