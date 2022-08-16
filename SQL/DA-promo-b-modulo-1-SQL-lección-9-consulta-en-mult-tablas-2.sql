@@ -25,7 +25,7 @@ GROUP BY customers.company_name;		# PARA CADA CLIENTE (lenguaje humano)
 -- También nos han pedido que obtengamos todos los nombres de las empresas cliente de Reino Unido (tengan pedidos o no) junto con los 
 -- ID de todos los pedidos que han realizado, el nombre de contacto de cada empresa y la fecha del pedido.
 
-SELECT customers.company_name, orders.order_id, customers.contact_name, orders.order_date
+SELECT orders.order_id, customers.company_name, orders.order_date
 FROM customers
 LEFT JOIN orders
 ON customers.customer_id = orders.customer_id

@@ -15,7 +15,7 @@ GROUP BY employee_id;
 
 SELECT COUNT(order_id) , MAX(freight), employee_id
 FROM orders
-WHERE order_date IS NOT NULL
+WHERE shipped_date IS NOT NULL
 GROUP BY employee_id
 ORDER BY employee_id;
 
